@@ -25,6 +25,7 @@ def load_generator():
         device=device,
     )
 
+
 generator = load_generator()
 
 RANDOM_QUESTIONS = [
@@ -47,40 +48,34 @@ RANDOM_QUESTIONS = [
     "Find the most common job title among employees in the IT department.",
     "List all projects that have not started yet but have assigned team members.",
     "Show the change in inventory levels for each product over the last 6 months.",
-    "Find all customers who have placed orders in every quarter of 2023."
+    "Find all customers who have placed orders in every quarter of 2023.",
 ]
 
-if 'question_text' not in st.session_state:
-    st.session_state['question_text'] = ""
+if "question_text" not in st.session_state:
+    st.session_state["question_text"] = ""
+
 
 def insert_random_question():
-    st.session_state['question_text'] = random.choice(RANDOM_QUESTIONS)
+    st.session_state["question_text"] = random.choice(RANDOM_QUESTIONS)
+
 
 st.button("Insert random question", on_click=insert_random_question)
 
-question = st.text_area(
-    "Enter your question:",
-    key="question_text"
-)
+question = st.text_area("Enter your question:", key="question_text")
 
 if st.button("Generate SQL"):
     with st.spinner("Generating..."):
-        output = generator([
-            {"role": "user", "content": question}
-        ], max_new_tokens=128, return_full_text=False)[0]
-
-
+        output = generator(
+            [{"role": "user", "content": question}],
+            max_new_tokens=128,
+            return_full_text=False,
+        )[0]
 
         formatted_sql = sqlparse.format(
-            output['generated_text'],
-            reindent=True,          # Adds line breaks and indentations
-            keyword_case='upper'    # Makes SQL keywords uppercase
+            output["generated_text"],
+            reindent=True,  # Adds line breaks and indentations
+            keyword_case="upper",  # Makes SQL keywords uppercase
         )
 
         # Display the generated SQL in a styled box
-        st.code(
-            formatted_sql,
-            language='sql',
-            line_numbers=True,
-            wrap_lines=True
-        )
+        st.code(formatted_sql, language="sql", line_numbers=True, wrap_lines=True)
