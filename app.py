@@ -3,25 +3,26 @@ from transformers import pipeline
 import torch
 import os
 import random
+import sqlparse
+
 
 st.title("SmolLM2-FT-SQL: NL2SQL Demo")
 
 # Check device
 if torch.cuda.is_available():
     device = "cuda"
+elif torch.backends.mps.is_available():
+    device = "mps"  # For Apple Silicon (M1/M2) with PyTorch MPS support
 else:
     device = "cpu"
 
-# Optional: Use HuggingFace token from .env if present
-hf_token = os.getenv("HF_TOKEN")
 
 @st.cache_resource(show_spinner=True)
 def load_generator():
     return pipeline(
         "text-generation",
         model="thiborose/SmolLM2-FT-SQL",
-        device=0 if device == "cuda" else -1,
-        token=hf_token
+        device=device,
     )
 
 generator = load_generator()
@@ -68,9 +69,17 @@ if st.button("Generate SQL"):
             {"role": "user", "content": question}
         ], max_new_tokens=128, return_full_text=False)[0]
 
+
+
+        formatted_sql = sqlparse.format(
+            output['generated_text'],
+            reindent=True,          # Adds line breaks and indentations
+            keyword_case='upper'    # Makes SQL keywords uppercase
+        )
+
         # Display the generated SQL in a styled box
         st.code(
-            output['generated_text'],
+            formatted_sql,
             language='sql',
             line_numbers=True,
             wrap_lines=True
