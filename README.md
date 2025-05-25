@@ -51,8 +51,8 @@ Using a strong LLM as an automatic judge is especially useful because multiple S
 #### Notes on Evaluation Data
 
 - The evaluation set is from the `test` split of the `gretelai/synthetic_text_to_sql` dataset.  
-- Due to time constraints, only 2,074 samples were evaluated with the LLM-led method.  
-- Results are saved in `2.1_llm_eval_output.txt` (raw output) and `2.2_parsed_output.json` (parsed structured data).
+- Due to time constraints, only 2,074 samples were evaluated.  
+- Results are saved in `2.2_parsed_output.json`.
 
 ### Evaluation Results Summary
 
@@ -67,7 +67,7 @@ Using a strong LLM as an automatic judge is especially useful because multiple S
 
 #### Comments on the Results
 
-The model achieves a syntactic correctness rate of about 97.5%, which indicates it reliably produces valid SQL syntax. However, semantic correctness is much lower at 33.1%, revealing that while the SQL queries are well-formed, they often fail to answer the natural language questions accurately. The dominant error type is `logic_error`, suggesting the model struggles primarily with the correct logical construction of queries rather than syntax or missing parts.
+The model achieves a syntactic correctness rate of about 97.5%, which indicates it reliably produces valid SQL syntax. However, semantic correctness is much lower at 33.1%, revealing that while the SQL queries are well-formed, they often fail to translate the natural language questions accurately. The dominant error type is `logic_error`, suggesting the model struggles primarily with the correct logical construction of queries rather than syntax or missing parts.
 
 These results highlight that fine-tuning improved the model's ability to generate syntactically valid SQL but that significant work remains to improve the semantic understanding and correctness of the generated queries. Considering the small model size and limited training time, these results are an expected starting point for further improvements.
 
