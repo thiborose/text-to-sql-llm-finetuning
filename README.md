@@ -71,6 +71,8 @@ The model achieves a syntactic correctness rate of about 97.5%, which indicates 
 
 These results highlight that fine-tuning improved the model's ability to generate syntactically valid SQL but that significant work remains to improve the semantic understanding and correctness of the generated queries. Considering the small model size and limited training time, these results are an expected starting point for further improvements.
 
+Unfortunately, no baseline evaluation has been formally conducted due to time constraints. However, preliminary qualitative testing of the base model (`HuggingFaceTB/SmolLM2-135M`) revealed that it was unable to generate any coherent SQL queries. In many cases, it failed to produce syntactically valid output and frequently generated irrelevant or incoherent text. While this does not replace a proper quantitative baseline, it strongly suggests that the base model lacks the capabilities required for the SQL generation task and that the fine-tuning has had a meaningful impact.
+
 ## Deployment
 
 A simple Streamlit app is provided in `app.py` for interactive testing of the fine-tuned model. The app loads the fine-tuned model using Hugging Face Transformers and provides a text area for users to input natural language questions. The generated SQL is formatted and displayed for easy inspection. The app is dockerized for easy deployment and is available deployed at [http://143.110.221.84](http://143.110.221.84).
