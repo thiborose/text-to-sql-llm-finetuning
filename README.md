@@ -14,7 +14,7 @@ For the fine-tuning tasks, I made the following assumptions:
 
 ### Fine-Tuning Process
 
-- Used a Google Colab notebook with a T4 GPU runtime.  
+- Used a Google Colab notebook with a T4 GPU runtime. A copy of the notebook is available at `./1_training.ipynb`.
 - Used the training split of the dataset [`gretelai/synthetic_text_to_sql`](https://huggingface.co/datasets/gretelai/synthetic_text_to_sql), specifically the `sql` and `sql_prompt` columns.  
 - Used the `trl` library.  
 - Training parameters:  
