@@ -1,6 +1,7 @@
 # Translating Natural Language to SQL
 
-Test it out here: [http://143.110.221.84](http://143.110.221.84)
+(The deployed instance is currently turned off) 
+Test it out here: [`http://143.110.221.84`](http://143.110.221.84)
 
 ## Fine-Tuning the LLM
 
