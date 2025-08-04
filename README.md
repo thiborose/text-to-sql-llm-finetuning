@@ -1,4 +1,13 @@
+> [!IMPORTANT]
+> This project is the result of a coding challenge completed over a weekend. It is not production-ready, and several assumptions were made to complete it within the limited timeframe.
+
 # Translating Natural Language to SQL
+
+## Project Overview
+
+This repository contains a solution to a weekend coding challenge that focuses on developing a system to translate natural language questions into SQL queries. The goal is to enable non-technical users to query databases using everyday language instead of writing SQL code directly.
+
+The approach involves fine-tuning a general-purpose language model (LLM) specifically for the SQL generation task. By training the model on pairs of natural language questions and their corresponding SQL queries, it learns to generate syntactically correct and semantically accurate SQL based on user input. The project demonstrates how domain-specific fine-tuning can adapt a general language model to specialized tasks, even with relatively limited computational resources.
 
 (The deployed instance is currently turned off) 
 Test it out here: [`http://143.110.221.84`](http://143.110.221.84)
